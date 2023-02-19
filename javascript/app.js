@@ -268,6 +268,9 @@ function filtrarPrecios(responseProductos){
         })
 
         }
+
+
+        function libreriaParaAlertaCarrito(){}
         
 
 
