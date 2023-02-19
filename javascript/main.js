@@ -290,7 +290,7 @@ const carrito = carritoDelLS();
 
 //    Buscar productos en json    //
 
-fetch("json/productos.json")
+fetch("/json/productos.json")
     .then((response) => {
         return (response.json());
     })
