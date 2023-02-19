@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Proyecto Final</title>
+</head>
+
+
+
+<body>
+
+    <h1 class="titulo">Productos</h1>
+
+    <section class="filtros">
+
+
+        <div class="filtros-div">
+            <select id="categorias">
+
+                <option value="mostrarTodo">Mostrar todo</option>
+                <option value="monitores">Monitores</option>
+                <option value="televisores">Televisores</option>
+
+            </select>
+        </div>
+
+
+        <div class="filtros-div"> 
+
+            <select name="" id="selectFiltroPrecio" >
+
+                <option value="mayorPrecio">Mayor Precio</option>
+                <option value="menorPrecio">Menor Precio</option>
+
+
+
+            </select>
+
+
+        </div>
+
+         
+    <div class="filtros-div">
+
+        <input type="text" placeholder="Buscar producto" id="inputBuscarProducto">
+
+    </div>
+
+
+    </section>
+
+   
+
+    <section id="productos" class="contenedor">
+
+
+
+
+    </section>
+
+
+
+
+<section class="seccionCarrito">
+
+   <table id="carrito">
+
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+    
+            <tbody id="tbodyCarrito"></tbody>
+    
+        </table>
+
+
+        <h2><strong>Total del carrito:</strong><p id="totalAPagar"></p></h2>
+
+
+    </section>
+
+    <script src="./javascript/app.js"></script>
+
+</body>
+
+</html>
