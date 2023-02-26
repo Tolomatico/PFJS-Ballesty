@@ -1,7 +1,7 @@
-        //     Funciones    //
+//     Funciones    //
 
 
-       
+
 
 // Función para saber la cantidad del producto en el carrito //
 
@@ -269,7 +269,7 @@ function filtrarPorCategoria(responseProductos) {
         if (inputFiltrarCategorias.value == "monitores") {
 
 
-          const  monitores = responseProductos.filter((el) => el.nombre.toLowerCase().includes("monitor"))
+            const monitores = responseProductos.filter((el) => el.nombre.toLowerCase().includes("monitor"))
 
 
 
@@ -310,9 +310,9 @@ function alertaSeQuitoDelCarrito() {
     Toastify({
         text: "Carrito -1 productos",
         duration: 2000,
-        gravity: "bottom", 
-        position: "right", 
-        stopOnFocus: true, 
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
         style: {
             background: "linear-gradient(to right, sky blue)",
         },
@@ -328,9 +328,9 @@ function alertaSeAgregoAlCarrito() {
     Toastify({
         text: "Carrito +1 productos",
         duration: 2000,
-        gravity: "bottom", 
-        position: "right", 
-        stopOnFocus: true, 
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true,
         style: {
             background: "linear-gradient(to right, sky blue)",
         },
@@ -356,7 +356,7 @@ const carrito = carritoDelLS();
 
 //    Buscar productos en json    //
 
-const responseProductos=[
+const responseProductos = [
     {
         "img": "https://http2.mlstatic.com/D_NQ_NP_722118-MLA51804662145_102022-W.webp",
         "nombre": "Monitor lcd",
@@ -385,21 +385,11 @@ const responseProductos=[
 ]
 
 
-// fetch("/json/productos.json")
-//     .then((response) => {
-//         return (response.json());
-//     })
-//     .then((responseProductos) => {
-//         console.log(responseProductos)
+renderizarProductos(responseProductos)
+filtrarPorCategoria(responseProductos)
+filtrarPrecios(responseProductos)
+buscarProducto(responseProductos)
 
-
-        renderizarProductos(responseProductos)
-        filtrarPorCategoria(responseProductos)
-        filtrarPrecios(responseProductos)
-        buscarProducto(responseProductos)
-
-    // }
-    // )
 
 renderizarCarrito();
 
