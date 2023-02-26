@@ -1,26 +1,26 @@
 [
     {
-        "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
+        "img": "https://http2.mlstatic.com/D_NQ_NP_722118-MLA51804662145_102022-W.webp",
         "nombre": "Monitor lcd",
-        "precio": 80000
+        "precio": 60000
     },
     {
         "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
         "nombre": "Monitor led",
-        "precio": 99999
+        "precio": 80000
     },
     {
-        "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
+        "img": "https://http2.mlstatic.com/D_NQ_NP_845070-MLA46623210425_072021-W.webp",
         "nombre": "Monitor ips",
+        "precio": 100000
+    },
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_787221-MLA48007684849_102021-V.webp",
+        "nombre": "Tv 4k",
         "precio": 120000
     },
     {
-        "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
-        "nombre": "Tv 4k",
-        "precio": 70000
-    },
-    {
-        "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
+        "img": "https://http2.mlstatic.com/D_NQ_NP_680256-MLA51838363332_102022-V.webp",
         "nombre": "Tv FullHd",
         "precio": 50000
     }

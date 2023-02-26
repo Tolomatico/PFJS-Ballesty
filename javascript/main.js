@@ -1,6 +1,9 @@
-//     Funciones    //
+        //     Funciones    //
 
 
+       
+
+// Función para saber la cantidad del producto en el carrito //
 
 function cantidadDeProducto(producto) {
 
@@ -17,7 +20,7 @@ function cantidadDeProducto(producto) {
 }
 
 
-
+// Funciones de LocalStorage //
 
 function agregarCarritoAlLS() {
 
@@ -39,6 +42,10 @@ function carritoDelLS() {
 
     return carrito
 }
+
+
+
+// Función de Renderizar el carrito //
 
 function renderizarCarrito() {
 
@@ -79,7 +86,7 @@ function renderizarCarrito() {
 
 
 
-
+// Función de agregar al carrito //
 
 function agregarAlCarrito(producto, cantidad) {
 
@@ -98,9 +105,8 @@ function agregarAlCarrito(producto, cantidad) {
             cantidad: cantidad,
 
 
+
         })
-
-
     }
 
     else {
@@ -116,7 +122,7 @@ function agregarAlCarrito(producto, cantidad) {
 
 
 
-
+// Función del Renderizado de productos //
 
 function renderizarProductos(productos) {
 
@@ -147,8 +153,18 @@ function renderizarProductos(productos) {
 
                 const cantidad = inputAgregarAlCarrito.value;
 
-                if (cantidad >= 0) {
+                if (inputAgregarAlCarrito.value > cantidadDeProducto(producto.nombre)) {
 
+                    alertaSeAgregoAlCarrito()
+
+                } else if (inputAgregarAlCarrito.value < cantidadDeProducto(producto.nombre) && inputAgregarAlCarrito.value >= 0) {
+
+                    alertaSeQuitoDelCarrito()
+
+                }
+
+
+                if (cantidad >= 0) {
 
                     agregarAlCarrito(producto, cantidad)
 
@@ -159,12 +175,11 @@ function renderizarProductos(productos) {
 
 
 
-
-
-
     }
 
 }
+
+// Función de cálculo y renderizado del total del carrito //
 
 function totalAPagar() {
 
@@ -188,99 +203,150 @@ function totalAPagar() {
 
 }
 
-function filtrarPrecios(responseProductos){
+// Función de filtro por precios //
+
+function filtrarPrecios(responseProductos) {
 
     filtroPrecio.addEventListener("change", () => {
-    
+
         console.log(filtroPrecio.value)
-    
+
         if (filtroPrecio.value === "mayorPrecio") {
-    
+
             const precioMayor = responseProductos.sort((a, b) => b.precio - a.precio);
-    
+
             renderizarProductos(precioMayor)
-    
-    
+
+
         }
-        else if(filtroPrecio.value === "menorPrecio"){
-    
-    
+        else if (filtroPrecio.value === "menorPrecio") {
+
+
             const precioMenor = responseProductos.sort((b, a) => b.precio - a.precio);
-    
+
             renderizarProductos(precioMenor)
         }
-    
-    })}
 
-    function buscarProducto(responseProductos){
-
-      
-
-        inputBuscarProducto.addEventListener("input",()=>{
-
-            console.log(inputBuscarProducto.value)
-        
-        
-
-       const productoBuscado=responseProductos.filter((el)=>el.nombre.toLowerCase().includes(inputBuscarProducto.value))
-        
-       renderizarProductos(productoBuscado)
+    })
+}
 
 
-        
+// Función de filtro de busqueda //
+
+function buscarProducto(responseProductos) {
+
+
+
+    inputBuscarProducto.addEventListener("input", () => {
+
+        console.log(inputBuscarProducto.value)
+
+
+
+        const productoBuscado = responseProductos.filter((el) => el.nombre.toLowerCase().includes(inputBuscarProducto.value.toLowerCase()))
+
+        renderizarProductos(productoBuscado)
+
+
+
+    }
+
+    )
+
+}
+
+
+// Función de filtro por categoria del producto //
+
+
+function filtrarPorCategoria(responseProductos) {
+
+    inputFiltrarCategorias.addEventListener("change", () => {
+
+
+        console.log(inputFiltrarCategorias.value)
+
+        if (inputFiltrarCategorias.value == "monitores") {
+
+
+          const  monitores = responseProductos.filter((el) => el.nombre.toLowerCase().includes("monitor"))
+
+
+
+            renderizarProductos(monitores)
+            filtrarPrecios(monitores)
+
+
+        } else if (inputFiltrarCategorias.value == "televisores") {
+
+            const televisores = responseProductos.filter((el) => el.nombre.toLowerCase().includes("tv"))
+
+            renderizarProductos(televisores)
+            filtrarPrecios(televisores)
         }
-        
-        )
-        
+
+        else if (inputFiltrarCategorias.value == "mostrarTodo") {
+
+
+            renderizarProductos(responseProductos)
+            filtrarPrecios(responseProductos)
         }
 
 
-        function filtrarPorCategoria(responseProductos){
-
-            inputFiltrarCategorias.addEventListener("change",()=>{
+    })
 
 
-            console.log(inputFiltrarCategorias.value)
 
-            if(inputFiltrarCategorias.value == "monitores"){
-
-             
-          const monitores=responseProductos.filter((el)=>el.nombre.toLowerCase().includes("monitor"))
-
-           renderizarProductos(monitores)
+}
 
 
-            }else if (inputFiltrarCategorias.value == "televisores"){
-
-                const televisores=responseProductos.filter((el)=>el.nombre.toLowerCase().includes("tv"))
-
-                renderizarProductos(televisores)
-
-            }
-
-            else if(inputFiltrarCategorias.value == "mostrarTodo"){
 
 
-                renderizarProductos(responseProductos)
-            }
+// Funciones de alerta para el carrito con Libreria //
+
+function alertaSeQuitoDelCarrito() {
 
 
-        })
+    Toastify({
+        text: "Carrito -1 productos",
+        duration: 2000,
+        gravity: "bottom", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+            background: "linear-gradient(to right, sky blue)",
+        },
+    }).showToast();
+}
 
-        }
 
 
-        function libreriaParaAlertaCarrito(){}
-        
+
+function alertaSeAgregoAlCarrito() {
 
 
+    Toastify({
+        text: "Carrito +1 productos",
+        duration: 2000,
+        gravity: "bottom", 
+        position: "right", 
+        stopOnFocus: true, 
+        style: {
+            background: "linear-gradient(to right, sky blue)",
+        },
+    }).showToast();
+}
+
+
+
+// Variables //
 
 
 const seccionProductos = document.getElementById("productos")
 const tbodyCarrito = document.getElementById("tbodyCarrito")
 const filtroPrecio = document.getElementById("selectFiltroPrecio")
-const inputBuscarProducto=document.getElementById("inputBuscarProducto")
-const inputFiltrarCategorias=document.getElementById("categorias")
+const inputBuscarProducto = document.getElementById("inputBuscarProducto")
+const inputFiltrarCategorias = document.getElementById("categorias")
 
 const carrito = carritoDelLS();
 
@@ -290,20 +356,50 @@ const carrito = carritoDelLS();
 
 //    Buscar productos en json    //
 
-fetch("/json/productos.json")
-    .then((response) => {
-        return (response.json());
-    })
-    .then((responseProductos) => {
+const responseProductos=[
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_722118-MLA51804662145_102022-W.webp",
+        "nombre": "Monitor lcd",
+        "precio": 60000
+    },
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_973781-MLA48131216539_112021-W.webp",
+        "nombre": "Monitor led",
+        "precio": 80000
+    },
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_845070-MLA46623210425_072021-W.webp",
+        "nombre": "Monitor ips",
+        "precio": 100000
+    },
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_787221-MLA48007684849_102021-V.webp",
+        "nombre": "Tv 4k",
+        "precio": 120000
+    },
+    {
+        "img": "https://http2.mlstatic.com/D_NQ_NP_680256-MLA51838363332_102022-V.webp",
+        "nombre": "Tv FullHd",
+        "precio": 50000
+    }
+]
+
+
+// fetch("/json/productos.json")
+//     .then((response) => {
+//         return (response.json());
+//     })
+//     .then((responseProductos) => {
+//         console.log(responseProductos)
+
 
         renderizarProductos(responseProductos)
-
-
+        filtrarPorCategoria(responseProductos)
         filtrarPrecios(responseProductos)
         buscarProducto(responseProductos)
-        filtrarPorCategoria(responseProductos)
-    }
-    )
+
+    // }
+    // )
 
 renderizarCarrito();
 
